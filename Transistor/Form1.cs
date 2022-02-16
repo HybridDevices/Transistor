@@ -1132,7 +1132,7 @@ namespace Transistor
             if (IdsList.Count == 0) { return; }
 
             //Add date time string
-            filename += DateTime.Now.Year.ToString();
+            filename += DateTime.Now.Year.ToString().Replace("20", "");
             if (DateTime.Now.Month < 10)
             {
                 filename += "0";
@@ -1143,7 +1143,7 @@ namespace Transistor
                 filename += "0";
             }
             filename += DateTime.Now.Day.ToString() + "_";
-            filename += DateTime.Now.ToLongTimeString().Replace(":", "");
+            filename += DateTime.Now.ToLongTimeString().Replace(":", "") + "_";
 
             // Add type label
             if (isLifetime) {
@@ -1162,7 +1162,7 @@ namespace Transistor
             }
 
             // Add name from textbox
-            filename += txt_name.Text + "_";
+            filename += txt_name.Text;
 
             //if Backup then create backup directory and empty it
             if (isBackup)

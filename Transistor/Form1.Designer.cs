@@ -770,6 +770,11 @@
             // Nud_time_gateSet
             // 
             this.Nud_time_gateSet.DecimalPlaces = 2;
+            this.Nud_time_gateSet.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.Nud_time_gateSet.Location = new System.Drawing.Point(65, 19);
             this.Nud_time_gateSet.Minimum = new decimal(new int[] {
             100,
@@ -876,6 +881,11 @@
             // Nud_time_drainSet
             // 
             this.Nud_time_drainSet.DecimalPlaces = 2;
+            this.Nud_time_drainSet.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.Nud_time_drainSet.Location = new System.Drawing.Point(65, 21);
             this.Nud_time_drainSet.Minimum = new decimal(new int[] {
             100,
