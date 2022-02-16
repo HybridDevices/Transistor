@@ -764,6 +764,10 @@ namespace Transistor
                     return;
                 }
 
+                SetVoltage(Convert.ToDouble(Nud_time_drainSet.Value), Convert.ToDouble(Nud_time_gateSet.Value));
+                limitMS = Convert.ToInt64(Nud_time_duration.Value * 60000);
+                delay = Convert.ToDouble(Nud_time_interval.Value) * 1000;
+
                 MeasureIV();
 
                 VdList.Add(DrainVolt);
@@ -1216,7 +1220,7 @@ namespace Transistor
                                 writer.WriteLine(String.Format("s{0}V{0}A{0}V{0}A", sep));
                                 for (int j = 0; j < Step; j++)
                                 {
-                                    writer.WriteLine(String.Format("{0}{5}{1}{5}{2}{5}{3}{5}{4}", Times[i * Step + j] / 1000.0, VD[i * Step + j], IDS[i * Step + j], VG[i * Step + j], IGS[i * Step + j], sep));
+                                    writer.WriteLine(String.Format("{0}{6}{1}{6}{2}{6}{3}{6}{4}{6}{5}", IRLTimes[i].Split('.')[0], Times[i * Step + j] / 1000.0, VD[i * Step + j], IDS[i * Step + j], VG[i * Step + j], IGS[i * Step + j], sep));
                                 }
                                 writer.WriteLine();
                             }

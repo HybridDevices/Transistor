@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title7 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title8 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsl_link = new System.Windows.Forms.ToolStripLabel();
@@ -406,51 +406,51 @@
             // 
             // ct_DS
             // 
-            chartArea5.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea5.AxisX.Title = "Drain Voltage (V)";
-            chartArea5.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea5.AxisY.LabelStyle.Format = "0.00E0";
-            chartArea5.AxisY.Title = "Current (A)";
-            chartArea5.Name = "ChartArea1";
-            this.ct_DS.ChartAreas.Add(chartArea5);
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX.Title = "Drain Voltage (V)";
+            chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisY.LabelStyle.Format = "0.00E0";
+            chartArea1.AxisY.Title = "Current (A)";
+            chartArea1.Name = "ChartArea1";
+            this.ct_DS.ChartAreas.Add(chartArea1);
             this.ct_DS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ct_DS.Location = new System.Drawing.Point(0, 0);
             this.ct_DS.Name = "ct_DS";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Name = "Series1";
-            this.ct_DS.Series.Add(series5);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Name = "Series1";
+            this.ct_DS.Series.Add(series1);
             this.ct_DS.Size = new System.Drawing.Size(656, 349);
             this.ct_DS.TabIndex = 1;
             this.ct_DS.Text = "chart1";
-            title5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            title5.Name = "Title1";
-            title5.Text = "Drain-Source Current";
-            this.ct_DS.Titles.Add(title5);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title1.Name = "Title1";
+            title1.Text = "Drain-Source Current";
+            this.ct_DS.Titles.Add(title1);
             // 
             // ct_GS
             // 
-            chartArea6.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea6.AxisX.Title = "Gate Voltage (V)";
-            chartArea6.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea6.AxisY.LabelStyle.Format = "0.00E0";
-            chartArea6.AxisY.Title = "Current (A)";
-            chartArea6.Name = "ChartArea1";
-            this.ct_GS.ChartAreas.Add(chartArea6);
+            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea2.AxisX.Title = "Gate Voltage (V)";
+            chartArea2.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea2.AxisY.LabelStyle.Format = "0.00E0";
+            chartArea2.AxisY.Title = "Current (A)";
+            chartArea2.Name = "ChartArea1";
+            this.ct_GS.ChartAreas.Add(chartArea2);
             this.ct_GS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ct_GS.Location = new System.Drawing.Point(0, 0);
             this.ct_GS.Name = "ct_GS";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.Name = "Series1";
-            this.ct_GS.Series.Add(series6);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Name = "Series1";
+            this.ct_GS.Series.Add(series2);
             this.ct_GS.Size = new System.Drawing.Size(656, 345);
             this.ct_GS.TabIndex = 1;
             this.ct_GS.Text = "chart2";
-            title6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            title6.Name = "Title1";
-            title6.Text = "Gate-Source Current";
-            this.ct_GS.Titles.Add(title6);
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title2.Name = "Title1";
+            title2.Text = "Gate-Source Current";
+            this.ct_GS.Titles.Add(title2);
             // 
             // tabPage3
             // 
@@ -494,51 +494,51 @@
             // 
             // ct_time_DS
             // 
-            chartArea7.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea7.AxisX.Title = "Time (s)";
-            chartArea7.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea7.AxisY.LabelStyle.Format = "0.00E0";
-            chartArea7.AxisY.Title = "Drain-Source Current (A)";
-            chartArea7.Name = "ChartArea1";
-            this.ct_time_DS.ChartAreas.Add(chartArea7);
+            chartArea3.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea3.AxisX.Title = "Time (s)";
+            chartArea3.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea3.AxisY.LabelStyle.Format = "0.00E0";
+            chartArea3.AxisY.Title = "Drain-Source Current (A)";
+            chartArea3.Name = "ChartArea1";
+            this.ct_time_DS.ChartAreas.Add(chartArea3);
             this.ct_time_DS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ct_time_DS.Location = new System.Drawing.Point(0, 0);
             this.ct_time_DS.Name = "ct_time_DS";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Name = "Series1";
-            this.ct_time_DS.Series.Add(series7);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Name = "Series1";
+            this.ct_time_DS.Series.Add(series3);
             this.ct_time_DS.Size = new System.Drawing.Size(656, 349);
             this.ct_time_DS.TabIndex = 1;
             this.ct_time_DS.Text = "chart1";
-            title7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            title7.Name = "Title1";
-            title7.Text = "Drain-Source Current";
-            this.ct_time_DS.Titles.Add(title7);
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title3.Name = "Title1";
+            title3.Text = "Drain-Source Current";
+            this.ct_time_DS.Titles.Add(title3);
             // 
             // ct_time_GS
             // 
-            chartArea8.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea8.AxisX.Title = "Time (s)";
-            chartArea8.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea8.AxisY.LabelStyle.Format = "0.00E0";
-            chartArea8.AxisY.Title = "Gate-Source Current (A)";
-            chartArea8.Name = "ChartArea1";
-            this.ct_time_GS.ChartAreas.Add(chartArea8);
+            chartArea4.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea4.AxisX.Title = "Time (s)";
+            chartArea4.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea4.AxisY.LabelStyle.Format = "0.00E0";
+            chartArea4.AxisY.Title = "Gate-Source Current (A)";
+            chartArea4.Name = "ChartArea1";
+            this.ct_time_GS.ChartAreas.Add(chartArea4);
             this.ct_time_GS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ct_time_GS.Location = new System.Drawing.Point(0, 0);
             this.ct_time_GS.Name = "ct_time_GS";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Name = "Series1";
-            this.ct_time_GS.Series.Add(series8);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Name = "Series1";
+            this.ct_time_GS.Series.Add(series4);
             this.ct_time_GS.Size = new System.Drawing.Size(656, 345);
             this.ct_time_GS.TabIndex = 1;
             this.ct_time_GS.Text = "chart2";
-            title8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            title8.Name = "Title1";
-            title8.Text = "Gate-Source Current";
-            this.ct_time_GS.Titles.Add(title8);
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title4.Name = "Title1";
+            title4.Text = "Gate-Source Current";
+            this.ct_time_GS.Titles.Add(title4);
             // 
             // gb_timed
             // 
