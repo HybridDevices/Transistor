@@ -1216,8 +1216,8 @@ namespace Transistor
 
                             for (int i = 0; i < Dstep; i++)
                             {
-                                writer.WriteLine(String.Format("Time{0}V_Drain{0}I_Drain{0}V_Gate{0}I_Gate", sep));
-                                writer.WriteLine(String.Format("s{0}V{0}A{0}V{0}A", sep));
+                                writer.WriteLine(String.Format("Real_Time{0}Measurement_Time{0}V_Drain{0}I_Drain{0}V_Gate{0}I_Gate", sep));
+                                writer.WriteLine(String.Format("{0}s{0}V{0}A{0}V{0}A", sep));
                                 for (int j = 0; j < Step; j++)
                                 {
                                     writer.WriteLine(String.Format("{0}{6}{1}{6}{2}{6}{3}{6}{4}{6}{5}", IRLTimes[i].Split('.')[0], Times[i * Step + j] / 1000.0, VD[i * Step + j], IDS[i * Step + j], VG[i * Step + j], IGS[i * Step + j], sep));
@@ -1240,11 +1240,11 @@ namespace Transistor
 
                             for (int i = 0; i < Gstep; i++)
                             {
-                                writer.WriteLine(String.Format("Time{0}V_Drain{0}I_Drain{0}V_Gate{0}I_Gate", sep));
-                                writer.WriteLine(String.Format("s{0}V{0}A{0}V{0}A", sep));
+                                writer.WriteLine(String.Format("Real_Time{0}Measurement_Time{0}V_Drain{0}I_Drain{0}V_Gate{0}I_Gate", sep));
+                                writer.WriteLine(String.Format("{0}min{0}V{0}A{0}V{0}A", sep));
                                 for (int j = 0; j < Step; j++)
                                 {
-                                    writer.WriteLine(String.Format("{0}{5}{1}{5}{2}{5}{3}{5}{4}", Times[i * Step + j] / 1000.0, VD[i * Step + j], IDS[i * Step + j], VG[i * Step + j], IGS[i * Step + j], sep));
+                                    writer.WriteLine(String.Format("{0}{6}{1}{6}{2}{6}{3}{6}{4}{6}{5}", IRLTimes[i].Split('.')[0], Times[i * Step + j] / 1000.0, VD[i * Step + j], IDS[i * Step + j], VG[i * Step + j], IGS[i * Step + j], sep));
                                 }
                                 writer.WriteLine();
                             }
