@@ -421,6 +421,7 @@
             series1.Name = "Series1";
             this.ct_DS.Series.Add(series1);
             this.ct_DS.Size = new System.Drawing.Size(656, 349);
+            this.ct_DS.SuppressExceptions = true;
             this.ct_DS.TabIndex = 1;
             this.ct_DS.Text = "chart1";
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
@@ -445,6 +446,7 @@
             series2.Name = "Series1";
             this.ct_GS.Series.Add(series2);
             this.ct_GS.Size = new System.Drawing.Size(656, 345);
+            this.ct_GS.SuppressExceptions = true;
             this.ct_GS.TabIndex = 1;
             this.ct_GS.Text = "chart2";
             title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
@@ -509,6 +511,7 @@
             series3.Name = "Series1";
             this.ct_time_DS.Series.Add(series3);
             this.ct_time_DS.Size = new System.Drawing.Size(656, 349);
+            this.ct_time_DS.SuppressExceptions = true;
             this.ct_time_DS.TabIndex = 1;
             this.ct_time_DS.Text = "chart1";
             title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
@@ -533,6 +536,7 @@
             series4.Name = "Series1";
             this.ct_time_GS.Series.Add(series4);
             this.ct_time_GS.Size = new System.Drawing.Size(656, 345);
+            this.ct_time_GS.SuppressExceptions = true;
             this.ct_time_GS.TabIndex = 1;
             this.ct_time_GS.Text = "chart2";
             title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
