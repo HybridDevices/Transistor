@@ -789,7 +789,21 @@ namespace Transistor
             }
         }
 
-
+        private void Chk_Pulse_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Chk_Pulse.Checked)
+            {
+                sc_list.Panel2.Enabled = true;
+                Nud_time_gateSet.Enabled = false;
+                cb_time_gate_range.Enabled = false;
+            }
+            else
+            {
+                sc_list.Panel2.Enabled = false;
+                Nud_time_gateSet.Enabled = true;
+                cb_time_gate_range.Enabled = true;
+            }
+        }
 
         private void Btt_Clear_Click(object sender, EventArgs e)
         {
