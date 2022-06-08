@@ -22,7 +22,7 @@ namespace Transistor
         bool Keithley_connected = false, isSaved = true, nextVg = false, isLifetime = false, Cdrain = true, Cgate = true, overflow = false, isTransfer = false, backup=false;
 
         double GateCur, DrainCur, GateVolt, DrainVolt, time=0, setVg, setVd, Rdrain, Rgate;
-        int Step, saveNumber=10;
+        int Step, saveNumber=10, nVals = 0;
         //double[] Ids, Igs, time, Vg, Vd;
 
         double[] range = { 100e-9, 1e-6, 10e-6, 100e-6, 1e-3, 10e-3, 100e-3, 1, 1.5 };
@@ -803,6 +803,179 @@ namespace Transistor
                 Nud_time_gateSet.Enabled = true;
                 cb_time_gate_range.Enabled = true;
             }
+        }
+
+        private void Btt_pulse_clear_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Delete all elements in the table?", "Delete all", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                LV_sweep.Items.Clear();
+            }
+        }
+
+        private void Btt_pulse_duplicate_Click(object sender, EventArgs e)
+        {
+            if (LV_sweep.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            ListViewItem lvi = LV_sweep.SelectedItems[0];
+            int index = lvi.Index + 1;
+            LV_sweep.Items.Insert(index, (ListViewItem)lvi.Clone());
+            lvi.Selected = true;
+            RestoreIdx();
+            LV_sweep.Focus();
+        }
+
+        private void RestoreIdx()
+        {
+            foreach (ListViewItem itm in LV_sweep.Items)
+            {
+                itm.SubItems[0].Text = (itm.Index + 1).ToString();
+            }
+        }
+
+        private void Btt_pulse_save_Click(object sender, EventArgs e)
+        {
+            if (LV_sweep.Items.Count == 0)
+            {
+                return;
+            }
+
+            string sep, filename = "TransistorPulseList_";
+            NumberFormatInfo info = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
+            CultureInfo culture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
+            // use . as decimal Seperator and , as data seperator
+            info.NumberDecimalSeparator = ".";
+            sep = ",";
+            culture.NumberFormat = info;
+            Thread.CurrentThread.CurrentCulture = culture;
+
+            filename += DateTime.Now.Year.ToString();
+            if (DateTime.Now.Month < 10)
+            {
+                filename += "0";
+            }
+            filename += DateTime.Now.Month.ToString();
+            if (DateTime.Now.Day < 10)
+            {
+                filename += "0";
+            }
+            filename += DateTime.Now.Day.ToString() + "_";
+            filename += DateTime.Now.ToLongTimeString().Replace(":", "");
+
+            Sfd_list.AddExtension = false;
+            Sfd_list.InitialDirectory = txt_path.Text;
+            Sfd_list.FileName = filename;
+            Sfd_list.Filter = "Comma-separated values (*.csv)| *.csv| Plain Text(*.txt) | *.txt| Plain Data(*.dat) | *.dat";
+
+            if (Sfd_list.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter writer = new StreamWriter(Sfd_list.FileName))
+                {
+                    writer.WriteLine(String.Format("{0}{8}{1}{8}{2}{8}{3}{8}{4}{8}{5}{8}{6}{8}{7}", "#", "Duration (ms)", "Type (A)", "Level (A)", "Limit (A)", "Type (B)", "Level (B)", "Limit (B)", sep));
+                    foreach (ListViewItem itm in LV_sweep.Items)
+                    {
+                        writer.WriteLine(String.Format("{0}{8}{1}{8}{2}{8}{3}{8}{4}{8}{5}{8}{6}{8}{7}", itm.SubItems[0].Text, itm.SubItems[1].Text, itm.SubItems[2].Text, itm.SubItems[3].Text, itm.SubItems[4].Text, itm.SubItems[5].Text, itm.SubItems[6].Text, itm.SubItems[7].Text, sep));
+                    }
+                }
+
+                tsl_saved.Visible = true;
+                tsl_link.Visible = true;
+                tsl_link.Text = txt_path.Text;
+            }
+        }
+
+        private void Btt_pulse_load_Click(object sender, EventArgs e)
+        {
+            NumberFormatInfo info = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
+            CultureInfo culture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
+            // use . as decimal Seperator and , as data seperator
+            info.NumberDecimalSeparator = ".";
+            culture.NumberFormat = info;
+            Thread.CurrentThread.CurrentCulture = culture;
+
+            string path;
+            string[] tmp, readText;
+            int nPoints;
+
+            Ofd_list.Title = "Select file containing program data";
+            Ofd_list.InitialDirectory = txt_path.Text;
+
+            if (Ofd_list.ShowDialog() == DialogResult.OK)
+            {
+                path = Ofd_list.FileName;
+                readText = File.ReadAllLines(path);
+                nPoints = readText.Length - 1;
+
+                for (int i = 1; i <= nPoints; i++)
+                {
+                    tmp = readText[i].Split(',');
+                    LV_sweep.Items.Add(new ListViewItem(tmp));
+                    LV_sweep.Items[LV_sweep.Items.Count - 1].Checked = true;
+                }
+                RestoreIdx();
+            }
+        }
+
+        private void Btt_pulse_remove_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem itm in LV_sweep.Items)
+            {
+                if (itm.Selected)
+                {
+                    itm.Remove();
+                }
+            }
+            RestoreIdx();
+        }
+
+        private void Btt_pulse_up_Click(object sender, EventArgs e)
+        {
+            if (LV_sweep.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            ListViewItem lvi = LV_sweep.SelectedItems[0];
+            if (lvi.Index > 0)
+            {
+                int index = lvi.Index - 1;
+                LV_sweep.Items.RemoveAt(lvi.Index);
+                LV_sweep.Items.Insert(index, lvi);
+                lvi.Selected = true;
+            }
+            RestoreIdx();
+            LV_sweep.Focus();
+        }
+
+        private void Btt_pulse_down_Click(object sender, EventArgs e)
+        {
+            if (LV_sweep.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            ListViewItem lvi = LV_sweep.SelectedItems[0];
+            if (lvi.Index < LV_sweep.Items.Count - 1)
+            {
+                int index = lvi.Index + 1;
+                LV_sweep.Items.RemoveAt(lvi.Index);
+                LV_sweep.Items.Insert(index, lvi);
+                lvi.Selected = true;
+            }
+            RestoreIdx();
+            LV_sweep.Focus();
+        }
+
+        private void Btt_pulse_add_Click(object sender, EventArgs e)
+        {
+            string[] itm = new string[4];
+            itm[0] = (++nVals).ToString();
+            itm[1] = Nud_pulse_level.Value.ToString();
+            itm[2] = Nud_pulse_duration.Value.ToString();
+            itm[3] = Nud_pulse_delay.Value.ToString();
+            LV_sweep.Items.Add(new ListViewItem(itm));
+            LV_sweep.Items[LV_sweep.Items.Count - 1].Checked = true;
+            RestoreIdx();
         }
 
         private void Btt_Clear_Click(object sender, EventArgs e)
