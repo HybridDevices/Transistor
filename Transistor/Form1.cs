@@ -23,7 +23,7 @@ namespace Transistor
 
         double GateCur, DrainCur, GateVolt, DrainVolt, time=0, setVg, setVd, Rdrain, Rgate;
         int Step, saveNumber=10, nVals = 0;
-        //double[] Ids, Igs, time, Vg, Vd;
+        double[] Level, Duration, Delay;
 
         double[] range = { 100e-9, 1e-6, 10e-6, 100e-6, 1e-3, 10e-3, 100e-3, 1, 1.5 };
 
@@ -230,6 +230,11 @@ namespace Transistor
                 }
             }
 
+            foreach (ListViewItem itm in LV_sweep.Items)
+            {
+                itm.BackColor = txt_KeithleyID.BackColor;
+            }
+
             btt_cancel.Enabled = true;
             btt_start.Enabled = false;
             gb_display.Enabled = false;
@@ -335,7 +340,6 @@ namespace Transistor
         /// Set the voltage on the Keithley
         /// </summary>
         /// <param name="V">Voltage level</param>
-        /// <param name="smuA">Which SMU</param>
         private void SetVoltage(double Vd, double Vg)
         {
             try
@@ -350,6 +354,44 @@ namespace Transistor
                 return;
             }
         }
+
+        /// <summary>
+        /// Set the gate Voltage
+        /// </summary>
+        /// <param name="Vgate">Voltage level for gate</param>
+        private void SetVoltageG(double Vgate)
+        {
+            try
+            {
+                SendCommand("smub.source.levelv = " + Vgate.ToString());
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:  " + ex.Message, "Ke26XX Command", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Set the drain Voltage
+        /// </summary>
+        /// <param name="Vgate">Voltage level for drain</param>
+        private void SetVoltageD(double Vdrain)
+        {
+            try
+            {
+                SendCommand("smua.source.levelv = " + Vdrain.ToString());
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error:  " + ex.Message, "Ke26XX Command", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+
 
         private void MeasureIV()
         {
@@ -429,7 +471,16 @@ namespace Transistor
             {
                 PrepareLifetime();
                 isLifetime = true;
-                bgW_LT.RunWorkerAsync();
+                if (Chk_Pulse.Checked)
+                {
+                    ConvertData();
+                    bgWPulse.RunWorkerAsync();
+                }
+                else
+                {
+                    bgW_LT.RunWorkerAsync();
+                }
+                
             }
             
         }
@@ -438,6 +489,10 @@ namespace Transistor
         {
             if (isLifetime)
             {
+                if (Chk_Pulse.Checked)
+                {
+                    bgWPulse.CancelAsync();
+                }
                 bgW_LT.CancelAsync();
             }
             else
@@ -549,8 +604,7 @@ namespace Transistor
         private void BgW_LT_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             // Check if user wants to cancel
-            if (bgW.CancellationPending)
-            { return; }
+            if (bgW.CancellationPending){ return; }
 
             double t = time / 1000;
 
@@ -581,7 +635,18 @@ namespace Transistor
                 SaveFile(true);
                 backup = false;
             }
+        }
 
+        private void BgWPulse_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            // Check if user wants to cancel
+            if (bgW.CancellationPending){ return; }
+
+            pB_progress.Value = e.ProgressPercentage;
+            pB_progress.Update();
+
+            LV_sweep.Items[e.ProgressPercentage].BackColor = Color.LightGreen;
+            LV_sweep.Update();
         }
 
         private void BgW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -789,19 +854,72 @@ namespace Transistor
             }
         }
 
+        private void bgWPulse_DoWork(object sender, DoWorkEventArgs e)
+        {
+            setVd = Convert.ToDouble(Nud_time_drainSet.Value);
+            long limitMS = Convert.ToInt64(Nud_time_duration.Value * 60000);
+            double delay = Convert.ToDouble(Nud_time_interval.Value) * 1000;
+            int nitm = LV_sweep.Items.Count;
+
+            if (LV_sweep.Items.Count == 0)
+            {
+                e.Cancel = true;
+                MessageBox.Show("No voltages to sweep in list.");
+                return;
+            }
+
+            SetVoltageD(setVd);
+
+            //Activate outputs
+            SendCommand("smua.source.output=1");
+
+            for (int i = 0; i < nitm; i++)
+            {
+                // Check if user wants to cancel
+                if (bgW_LT.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+                SetVoltageG(Level[i]);
+                SendCommand("smub.source.output=1");
+                Thread.Sleep((int)Duration[i]);
+                SendCommand("smub.source.output=0");
+                Thread.Sleep((int)Delay[i]);
+                bgWPulse.ReportProgress(i);
+            }
+        }
+
+        private void ConvertData()
+        {
+            int nitm = LV_sweep.Items.Count;
+            Level = new double[nitm];
+            Duration = new double[nitm];           
+            Delay = new double[nitm];
+            
+            foreach (ListViewItem itm in LV_sweep.Items)
+            {
+                int idx = itm.Index;
+                Level[idx] = Convert.ToDouble(itm.SubItems[1].Text);
+                Duration[idx] = Convert.ToDouble(itm.SubItems[2].Text);
+                Delay[idx] = Convert.ToDouble(itm.SubItems[3].Text);
+
+            }
+        }
+
         private void Chk_Pulse_CheckedChanged(object sender, EventArgs e)
         {
             if (Chk_Pulse.Checked)
             {
-                sc_list.Panel2.Enabled = true;
+                sc_list.Enabled = true;
                 Nud_time_gateSet.Enabled = false;
-                cb_time_gate_range.Enabled = false;
+                Gb_timing.Enabled = false;
             }
             else
             {
-                sc_list.Panel2.Enabled = false;
+                sc_list.Enabled = false;
                 Nud_time_gateSet.Enabled = true;
-                cb_time_gate_range.Enabled = true;
+                Gb_timing.Enabled = true;
             }
         }
 
@@ -930,6 +1048,12 @@ namespace Transistor
             RestoreIdx();
         }
 
+        private void Nud_pulse_level_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown tmp = (NumericUpDown)sender;
+            tmp.BackColor = (tmp.Value > 10 ? Color.Orange : SystemColors.Window);
+        }
+
         private void Btt_pulse_up_Click(object sender, EventArgs e)
         {
             if (LV_sweep.SelectedItems.Count == 0)
@@ -965,6 +1089,8 @@ namespace Transistor
             RestoreIdx();
             LV_sweep.Focus();
         }
+
+        
 
         private void Btt_pulse_add_Click(object sender, EventArgs e)
         {
