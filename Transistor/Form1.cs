@@ -23,7 +23,7 @@ namespace Transistor
 
         double GateCur, DrainCur, GateVolt, DrainVolt, time=0, setVg, setVd, Rdrain, Rgate;
         int Step, saveNumber=10, nVals = 0;
-        double[] Level, Duration, Delay;
+        double[] Level, Duration, Delay, Repeats;
 
         double[] range = { 100e-9, 1e-6, 10e-6, 100e-6, 1e-3, 10e-3, 100e-3, 1, 1.5 };
 
@@ -875,17 +875,21 @@ namespace Transistor
 
             for (int i = 0; i < nitm; i++)
             {
-                // Check if user wants to cancel
-                if (bgW_LT.CancellationPending)
-                {
-                    e.Cancel = true;
-                    return;
-                }
                 SetVoltageG(Level[i]);
-                SendCommand("smub.source.output=1");
-                Thread.Sleep((int)Duration[i]);
-                SendCommand("smub.source.output=0");
-                Thread.Sleep((int)Delay[i]);
+                for (int j = 0; j < Repeats[i]; j++)
+                {
+                    // Check if user wants to cancel
+                    if (bgW_LT.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+
+                    SendCommand("smub.source.output=1");
+                    Thread.Sleep((int)Duration[i]);
+                    SendCommand("smub.source.output=0");
+                    Thread.Sleep((int)Delay[i]);
+                }
                 bgWPulse.ReportProgress(i);
             }
         }
@@ -896,7 +900,8 @@ namespace Transistor
             Level = new double[nitm];
             Duration = new double[nitm];           
             Delay = new double[nitm];
-            
+            Repeats = new double[nitm];
+
             foreach (ListViewItem itm in LV_sweep.Items)
             {
                 int idx = itm.Index;
@@ -991,10 +996,10 @@ namespace Transistor
             {
                 using (StreamWriter writer = new StreamWriter(Sfd_list.FileName))
                 {
-                    writer.WriteLine(String.Format("{0}{8}{1}{8}{2}{8}{3}{8}{4}{8}{5}{8}{6}{8}{7}", "#", "Duration (ms)", "Type (A)", "Level (A)", "Limit (A)", "Type (B)", "Level (B)", "Limit (B)", sep));
+                    writer.WriteLine(String.Format("{0}{5}{1}{5}{2}{5}{3}{5}{4}", "#", "Level (V)", "Duration (ms)", "Delay (ms)", "Repeats", sep));
                     foreach (ListViewItem itm in LV_sweep.Items)
                     {
-                        writer.WriteLine(String.Format("{0}{8}{1}{8}{2}{8}{3}{8}{4}{8}{5}{8}{6}{8}{7}", itm.SubItems[0].Text, itm.SubItems[1].Text, itm.SubItems[2].Text, itm.SubItems[3].Text, itm.SubItems[4].Text, itm.SubItems[5].Text, itm.SubItems[6].Text, itm.SubItems[7].Text, sep));
+                        writer.WriteLine(String.Format("{0}{5}{1}{5}{2}{5}{3}{5}{4}", itm.SubItems[0].Text, itm.SubItems[1].Text, itm.SubItems[2].Text, itm.SubItems[3].Text, itm.SubItems[4].Text, sep));
                     }
                 }
 
@@ -1094,11 +1099,12 @@ namespace Transistor
 
         private void Btt_pulse_add_Click(object sender, EventArgs e)
         {
-            string[] itm = new string[4];
+            string[] itm = new string[5];
             itm[0] = (++nVals).ToString();
             itm[1] = Nud_pulse_level.Value.ToString();
             itm[2] = Nud_pulse_duration.Value.ToString();
             itm[3] = Nud_pulse_delay.Value.ToString();
+            itm[4] = Nud_pulse_repeats.Value.ToString();
             LV_sweep.Items.Add(new ListViewItem(itm));
             LV_sweep.Items[LV_sweep.Items.Count - 1].Checked = true;
             RestoreIdx();
