@@ -19,10 +19,10 @@ namespace Transistor
         private IKe26XXA Kdriver;
         string KeithleyID;
 
-        bool Keithley_connected = false, isSaved = true, nextVg = false, isLifetime = false, Cdrain = true, Cgate = true, overflow = false, isTransfer = false, backup=false;
+        bool Keithley_connected = false, isSaved = true, nextVg = false, isLifetime = false, Cdrain = true, Cgate = true, overflow = false, isTransfer = false, backup = false;
 
         double GateCur, DrainCur, GateVolt, DrainVolt, time=0, setVg, setVd, Rdrain, Rgate;
-        int Step, saveNumber=10, nVals = 0;
+        int Step, saveNumber=10, nVals = 0, rep = 0, nrep = 0;
         double[] Level, Duration, Delay, Repeats;
 
         double[] range = { 100e-9, 1e-6, 10e-6, 100e-6, 1e-3, 10e-3, 100e-3, 1, 1.5 };
@@ -640,13 +640,45 @@ namespace Transistor
         private void BgWPulse_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             // Check if user wants to cancel
-            if (bgW.CancellationPending){ return; }
+            if (bgW.CancellationPending) { return; }
+
+            if (e.ProgressPercentage == -1)
+            {
+                foreach (ListViewItem itm in LV_sweep.Items)
+                {
+                    itm.BackColor = txt_KeithleyID.BackColor;
+                }
+                LV_sweep.Update();
+                return;
+            }
+
+            double t = time / 1000;
 
             pB_progress.Value = e.ProgressPercentage;
             pB_progress.Update();
 
             LV_sweep.Items[e.ProgressPercentage].BackColor = Color.LightGreen;
-            LV_sweep.Update();
+            
+
+            TimeSpan span = new TimeSpan(0, 0, 0, 0, (int)time);
+            lbl_timeElapsed.Text = span.ToString(@"hh\:mm\:ss") + " (" + (rep+1).ToString() + "/" + nrep.ToString() + ")";
+
+            IdsT.Points.AddXY(t, Math.Abs(DrainCur));
+            IgsT.Points.AddXY(t, Math.Abs(GateCur));
+
+            VdT.Points.AddXY(t, Math.Abs(DrainVolt));
+            VgT.Points.AddXY(t, Math.Abs(GateVolt));
+
+            ct_time_DS.Update();
+            ct_time_GS.Update();
+
+            if (backup)
+            {
+                SaveFile(true);
+                backup = false;
+            }
+
+            
         }
 
         private void BgW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -859,7 +891,9 @@ namespace Transistor
             setVd = Convert.ToDouble(Nud_time_drainSet.Value);
             long limitMS = Convert.ToInt64(Nud_time_duration.Value * 60000);
             double delay = Convert.ToDouble(Nud_time_interval.Value) * 1000;
+            double mTime = Convert.ToDouble(nud_measureTime.Value) * 1000;
             int nitm = LV_sweep.Items.Count;
+            nrep = Convert.ToInt32(nud_totalrepeat.Value);
 
             if (LV_sweep.Items.Count == 0)
             {
@@ -869,29 +903,68 @@ namespace Transistor
             }
 
             SetVoltageD(setVd);
+            stopwatch.Restart();
+
 
             //Activate outputs
             SendCommand("smua.source.output=1");
-
-            for (int i = 0; i < nitm; i++)
+            
+            for (rep = 0; rep < nrep; rep++)
             {
-                SetVoltageG(Level[i]);
-                for (int j = 0; j < Repeats[i]; j++)
+                for (int i = 0; i < nitm; i++)
                 {
-                    // Check if user wants to cancel
-                    if (bgW_LT.CancellationPending)
+                    if (i == 0)
                     {
-                        e.Cancel = true;
-                        return;
+                        bgWPulse.ReportProgress(-1);
                     }
+                    SetVoltageG(Level[i]);
+                    for (int j = 0; j < Repeats[i]; j++)
+                    {
+                        // Check if user wants to cancel
+                        if (bgW_LT.CancellationPending)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
 
-                    SendCommand("smub.source.output=1");
-                    Thread.Sleep((int)Duration[i]);
-                    SendCommand("smub.source.output=0");
-                    Thread.Sleep((int)Delay[i]);
+                        SendCommand("smub.source.output=1");
+                        int nmeas = (int)(Duration[i] / Convert.ToDouble(nud_measureTime.Value));
+                        int nmeasP = (int)(Delay[i] / Convert.ToDouble(nud_measureTime.Value));
+
+                        //MessageBox.Show(nmeas.ToString() + " " + nmeasP.ToString());
+
+                        //Measurements every second
+                        for (int k = 0; k < nmeas; k++)
+                        {
+                            MeasureIV();
+
+                            VdList.Add(DrainVolt);
+                            VgList.Add(GateVolt);
+                            IdsList.Add(DrainCur);
+                            IgsList.Add(GateCur);
+                            time = stopwatch.ElapsedMilliseconds;
+                            TimeList.Add(stopwatch.ElapsedMilliseconds);
+                            TimeIRLList.Add(DateTime.Now.TimeOfDay.ToString());
+
+                            Thread.Sleep((int)mTime);
+                        }
+
+                        bgWPulse.ReportProgress(i);
+
+                        //Delay
+                        SendCommand("smub.source.output=0");
+                        for (int k = 0; k < nmeasP; k++)
+                        {
+                            Thread.Sleep((int)delay);
+                        }
+
+
+                    }
                 }
-                bgWPulse.ReportProgress(i);
             }
+
+            
+            
         }
 
         private void ConvertData()
@@ -908,7 +981,7 @@ namespace Transistor
                 Level[idx] = Convert.ToDouble(itm.SubItems[1].Text);
                 Duration[idx] = Convert.ToDouble(itm.SubItems[2].Text);
                 Delay[idx] = Convert.ToDouble(itm.SubItems[3].Text);
-
+                Repeats[idx] = Convert.ToDouble(itm.SubItems[4].Text);
             }
         }
 
@@ -1053,10 +1126,23 @@ namespace Transistor
             RestoreIdx();
         }
 
+        private void tm_PulseMeasure_Tick(object sender, EventArgs e)
+        {
+            MeasureIV();
+
+            VdList.Add(DrainVolt);
+            VgList.Add(GateVolt);
+            IdsList.Add(DrainCur);
+            IgsList.Add(GateCur);
+            time = stopwatch.ElapsedMilliseconds;
+            TimeList.Add(stopwatch.ElapsedMilliseconds);
+            TimeIRLList.Add(DateTime.Now.TimeOfDay.ToString());
+        }
+
         private void Nud_pulse_level_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown tmp = (NumericUpDown)sender;
-            tmp.BackColor = (tmp.Value > 10 ? Color.Orange : SystemColors.Window);
+            tmp.BackColor = (Math.Abs(tmp.Value) > 10 ? Color.Orange : SystemColors.Window);
         }
 
         private void Btt_pulse_up_Click(object sender, EventArgs e)
@@ -1104,7 +1190,7 @@ namespace Transistor
             itm[1] = Nud_pulse_level.Value.ToString();
             itm[2] = Nud_pulse_duration.Value.ToString();
             itm[3] = Nud_pulse_delay.Value.ToString();
-            itm[4] = Nud_pulse_repeats.Value.ToString();
+            itm[4] = Nud_pulses.Value.ToString();
             LV_sweep.Items.Add(new ListViewItem(itm));
             LV_sweep.Items[LV_sweep.Items.Count - 1].Checked = true;
             RestoreIdx();

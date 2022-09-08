@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title7 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title8 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsl_link = new System.Windows.Forms.ToolStripLabel();
@@ -72,10 +72,18 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.nud_totalrepeat = new System.Windows.Forms.NumericUpDown();
+            this.nud_measureTime = new System.Windows.Forms.NumericUpDown();
+            this.label34 = new System.Windows.Forms.Label();
             this.Btt_pulse_add = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.Nud_pulses = new System.Windows.Forms.NumericUpDown();
             this.Nud_pulse_delay = new System.Windows.Forms.NumericUpDown();
             this.Nud_pulse_duration = new System.Windows.Forms.NumericUpDown();
             this.label32 = new System.Windows.Forms.Label();
@@ -176,9 +184,6 @@
             this.Sfd_list = new System.Windows.Forms.SaveFileDialog();
             this.Ofd_list = new System.Windows.Forms.OpenFileDialog();
             this.bgWPulse = new System.ComponentModel.BackgroundWorker();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Nud_pulse_repeats = new System.Windows.Forms.NumericUpDown();
-            this.label35 = new System.Windows.Forms.Label();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -210,6 +215,9 @@
             this.sc_list.Panel1.SuspendLayout();
             this.sc_list.Panel2.SuspendLayout();
             this.sc_list.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_totalrepeat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_measureTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Nud_pulses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_pulse_delay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_pulse_duration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_pulse_level)).BeginInit();
@@ -240,7 +248,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nud_gate_end)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_gate_step)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_gate_start)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nud_pulse_repeats)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripContainer1
@@ -449,53 +456,53 @@
             // 
             // ct_DS
             // 
-            chartArea7.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea7.AxisX.Title = "Drain Voltage (V)";
-            chartArea7.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea7.AxisY.LabelStyle.Format = "0.00E0";
-            chartArea7.AxisY.Title = "Current (A)";
-            chartArea7.Name = "ChartArea1";
-            this.ct_DS.ChartAreas.Add(chartArea7);
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX.Title = "Drain Voltage (V)";
+            chartArea1.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisY.LabelStyle.Format = "0.00E0";
+            chartArea1.AxisY.Title = "Current (A)";
+            chartArea1.Name = "ChartArea1";
+            this.ct_DS.ChartAreas.Add(chartArea1);
             this.ct_DS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ct_DS.Location = new System.Drawing.Point(0, 0);
             this.ct_DS.Name = "ct_DS";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Name = "Series1";
-            this.ct_DS.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Name = "Series1";
+            this.ct_DS.Series.Add(series1);
             this.ct_DS.Size = new System.Drawing.Size(960, 349);
             this.ct_DS.SuppressExceptions = true;
             this.ct_DS.TabIndex = 1;
             this.ct_DS.Text = "chart1";
-            title7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            title7.Name = "Title1";
-            title7.Text = "Drain-Source Current";
-            this.ct_DS.Titles.Add(title7);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title1.Name = "Title1";
+            title1.Text = "Drain-Source Current";
+            this.ct_DS.Titles.Add(title1);
             // 
             // ct_GS
             // 
-            chartArea8.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea8.AxisX.Title = "Gate Voltage (V)";
-            chartArea8.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea8.AxisY.LabelStyle.Format = "0.00E0";
-            chartArea8.AxisY.Title = "Current (A)";
-            chartArea8.Name = "ChartArea1";
-            this.ct_GS.ChartAreas.Add(chartArea8);
+            chartArea2.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea2.AxisX.Title = "Gate Voltage (V)";
+            chartArea2.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea2.AxisY.LabelStyle.Format = "0.00E0";
+            chartArea2.AxisY.Title = "Current (A)";
+            chartArea2.Name = "ChartArea1";
+            this.ct_GS.ChartAreas.Add(chartArea2);
             this.ct_GS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ct_GS.Location = new System.Drawing.Point(0, 0);
             this.ct_GS.Name = "ct_GS";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series8.Name = "Series1";
-            this.ct_GS.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Name = "Series1";
+            this.ct_GS.Series.Add(series2);
             this.ct_GS.Size = new System.Drawing.Size(960, 345);
             this.ct_GS.SuppressExceptions = true;
             this.ct_GS.TabIndex = 1;
             this.ct_GS.Text = "chart2";
-            title8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            title8.Name = "Title1";
-            title8.Text = "Gate-Source Current";
-            this.ct_GS.Titles.Add(title8);
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title2.Name = "Title1";
+            title2.Text = "Gate-Source Current";
+            this.ct_GS.Titles.Add(title2);
             // 
             // tabPage3
             // 
@@ -556,53 +563,53 @@
             // 
             // ct_time_DS
             // 
-            chartArea5.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea5.AxisX.Title = "Time (s)";
-            chartArea5.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea5.AxisY.LabelStyle.Format = "0.00E0";
-            chartArea5.AxisY.Title = "Drain-Source Current (A)";
-            chartArea5.Name = "ChartArea1";
-            this.ct_time_DS.ChartAreas.Add(chartArea5);
+            chartArea3.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea3.AxisX.Title = "Time (s)";
+            chartArea3.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea3.AxisY.LabelStyle.Format = "0.00E0";
+            chartArea3.AxisY.Title = "Drain-Source Current (A)";
+            chartArea3.Name = "ChartArea1";
+            this.ct_time_DS.ChartAreas.Add(chartArea3);
             this.ct_time_DS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ct_time_DS.Location = new System.Drawing.Point(0, 0);
             this.ct_time_DS.Name = "ct_time_DS";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Name = "Series1";
-            this.ct_time_DS.Series.Add(series5);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Name = "Series1";
+            this.ct_time_DS.Series.Add(series3);
             this.ct_time_DS.Size = new System.Drawing.Size(480, 349);
             this.ct_time_DS.SuppressExceptions = true;
             this.ct_time_DS.TabIndex = 2;
             this.ct_time_DS.Text = "chart1";
-            title5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            title5.Name = "Title1";
-            title5.Text = "Drain-Source Current";
-            this.ct_time_DS.Titles.Add(title5);
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title3.Name = "Title1";
+            title3.Text = "Drain-Source Current";
+            this.ct_time_DS.Titles.Add(title3);
             // 
             // ct_time_GS
             // 
-            chartArea6.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea6.AxisX.Title = "Time (s)";
-            chartArea6.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
-            chartArea6.AxisY.LabelStyle.Format = "0.00E0";
-            chartArea6.AxisY.Title = "Gate-Source Current (A)";
-            chartArea6.Name = "ChartArea1";
-            this.ct_time_GS.ChartAreas.Add(chartArea6);
+            chartArea4.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea4.AxisX.Title = "Time (s)";
+            chartArea4.AxisY.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea4.AxisY.LabelStyle.Format = "0.00E0";
+            chartArea4.AxisY.Title = "Gate-Source Current (A)";
+            chartArea4.Name = "ChartArea1";
+            this.ct_time_GS.ChartAreas.Add(chartArea4);
             this.ct_time_GS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ct_time_GS.Location = new System.Drawing.Point(0, 0);
             this.ct_time_GS.Name = "ct_time_GS";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.Name = "Series1";
-            this.ct_time_GS.Series.Add(series6);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Name = "Series1";
+            this.ct_time_GS.Series.Add(series4);
             this.ct_time_GS.Size = new System.Drawing.Size(476, 349);
             this.ct_time_GS.SuppressExceptions = true;
             this.ct_time_GS.TabIndex = 4;
             this.ct_time_GS.Text = "chart2";
-            title6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            title6.Name = "Title1";
-            title6.Text = "Gate-Source Current";
-            this.ct_time_GS.Titles.Add(title6);
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            title4.Name = "Title1";
+            title4.Text = "Gate-Source Current";
+            this.ct_time_GS.Titles.Add(title4);
             // 
             // sc_list
             // 
@@ -618,12 +625,17 @@
             // 
             // sc_list.Panel2
             // 
+            this.sc_list.Panel2.Controls.Add(this.label37);
+            this.sc_list.Panel2.Controls.Add(this.label36);
+            this.sc_list.Panel2.Controls.Add(this.nud_totalrepeat);
+            this.sc_list.Panel2.Controls.Add(this.nud_measureTime);
+            this.sc_list.Panel2.Controls.Add(this.label34);
             this.sc_list.Panel2.Controls.Add(this.Btt_pulse_add);
             this.sc_list.Panel2.Controls.Add(this.label35);
             this.sc_list.Panel2.Controls.Add(this.label33);
             this.sc_list.Panel2.Controls.Add(this.label31);
             this.sc_list.Panel2.Controls.Add(this.label29);
-            this.sc_list.Panel2.Controls.Add(this.Nud_pulse_repeats);
+            this.sc_list.Panel2.Controls.Add(this.Nud_pulses);
             this.sc_list.Panel2.Controls.Add(this.Nud_pulse_delay);
             this.sc_list.Panel2.Controls.Add(this.Nud_pulse_duration);
             this.sc_list.Panel2.Controls.Add(this.label32);
@@ -675,17 +687,94 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Pulse Duration (ms)";
+            this.columnHeader2.Text = "Pulse Duration (s)";
             this.columnHeader2.Width = 120;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Pulse Delay (ms)";
+            this.columnHeader3.Text = "Pulse Delay (s)";
             this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Pulses";
+            this.columnHeader4.Width = 100;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(22, 270);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(50, 13);
+            this.label37.TabIndex = 9;
+            this.label37.Text = "Repeats:";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(22, 296);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(51, 13);
+            this.label36.TabIndex = 10;
+            this.label36.Text = "Measure:";
+            // 
+            // nud_totalrepeat
+            // 
+            this.nud_totalrepeat.Location = new System.Drawing.Point(76, 268);
+            this.nud_totalrepeat.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nud_totalrepeat.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nud_totalrepeat.Name = "nud_totalrepeat";
+            this.nud_totalrepeat.Size = new System.Drawing.Size(104, 20);
+            this.nud_totalrepeat.TabIndex = 7;
+            this.nud_totalrepeat.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nud_measureTime
+            // 
+            this.nud_measureTime.DecimalPlaces = 2;
+            this.nud_measureTime.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nud_measureTime.Location = new System.Drawing.Point(76, 294);
+            this.nud_measureTime.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.nud_measureTime.Name = "nud_measureTime";
+            this.nud_measureTime.Size = new System.Drawing.Size(104, 20);
+            this.nud_measureTime.TabIndex = 8;
+            this.nud_measureTime.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(186, 296);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(12, 13);
+            this.label34.TabIndex = 11;
+            this.label34.Text = "s";
             // 
             // Btt_pulse_add
             // 
-            this.Btt_pulse_add.Location = new System.Drawing.Point(42, 190);
+            this.Btt_pulse_add.Location = new System.Drawing.Point(42, 149);
             this.Btt_pulse_add.Name = "Btt_pulse_add";
             this.Btt_pulse_add.Size = new System.Drawing.Size(30, 30);
             this.Btt_pulse_add.TabIndex = 0;
@@ -693,10 +782,19 @@
             this.Btt_pulse_add.UseVisualStyleBackColor = true;
             this.Btt_pulse_add.Click += new System.EventHandler(this.Btt_pulse_add_Click);
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(22, 105);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(41, 13);
+            this.label35.TabIndex = 5;
+            this.label35.Text = "Pulses:";
+            // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(20, 133);
+            this.label33.Location = new System.Drawing.Point(22, 79);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(37, 13);
             this.label33.TabIndex = 5;
@@ -705,7 +803,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(20, 107);
+            this.label31.Location = new System.Drawing.Point(22, 53);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(50, 13);
             this.label31.TabIndex = 5;
@@ -714,11 +812,33 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(20, 81);
+            this.label29.Location = new System.Drawing.Point(22, 27);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(46, 13);
             this.label29.TabIndex = 5;
             this.label29.Text = "Voltage:";
+            // 
+            // Nud_pulses
+            // 
+            this.Nud_pulses.Location = new System.Drawing.Point(76, 103);
+            this.Nud_pulses.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.Nud_pulses.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Nud_pulses.Name = "Nud_pulses";
+            this.Nud_pulses.Size = new System.Drawing.Size(104, 20);
+            this.Nud_pulses.TabIndex = 4;
+            this.Nud_pulses.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Nud_pulse_delay
             // 
@@ -728,9 +848,9 @@
             0,
             0,
             65536});
-            this.Nud_pulse_delay.Location = new System.Drawing.Point(74, 131);
+            this.Nud_pulse_delay.Location = new System.Drawing.Point(76, 77);
             this.Nud_pulse_delay.Maximum = new decimal(new int[] {
-            1000,
+            1000000000,
             0,
             0,
             0});
@@ -738,10 +858,10 @@
             this.Nud_pulse_delay.Size = new System.Drawing.Size(104, 20);
             this.Nud_pulse_delay.TabIndex = 4;
             this.Nud_pulse_delay.Value = new decimal(new int[] {
-            500,
+            5,
             0,
             0,
-            0});
+            65536});
             // 
             // Nud_pulse_duration
             // 
@@ -751,17 +871,17 @@
             0,
             0,
             65536});
-            this.Nud_pulse_duration.Location = new System.Drawing.Point(74, 105);
+            this.Nud_pulse_duration.Location = new System.Drawing.Point(76, 51);
             this.Nud_pulse_duration.Maximum = new decimal(new int[] {
-            10000,
-            0,
+            1410065408,
+            2,
             0,
             0});
             this.Nud_pulse_duration.Name = "Nud_pulse_duration";
             this.Nud_pulse_duration.Size = new System.Drawing.Size(104, 20);
             this.Nud_pulse_duration.TabIndex = 4;
             this.Nud_pulse_duration.Value = new decimal(new int[] {
-            1000,
+            1,
             0,
             0,
             0});
@@ -769,11 +889,11 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(184, 133);
+            this.label32.Location = new System.Drawing.Point(186, 79);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(20, 13);
+            this.label32.Size = new System.Drawing.Size(12, 13);
             this.label32.TabIndex = 6;
-            this.label32.Text = "ms";
+            this.label32.Text = "s";
             // 
             // Nud_pulse_level
             // 
@@ -783,7 +903,7 @@
             0,
             0,
             65536});
-            this.Nud_pulse_level.Location = new System.Drawing.Point(74, 79);
+            this.Nud_pulse_level.Location = new System.Drawing.Point(76, 25);
             this.Nud_pulse_level.Minimum = new decimal(new int[] {
             100,
             0,
@@ -802,15 +922,15 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(184, 107);
+            this.label30.Location = new System.Drawing.Point(186, 53);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(20, 13);
+            this.label30.Size = new System.Drawing.Size(12, 13);
             this.label30.TabIndex = 6;
-            this.label30.Text = "ms";
+            this.label30.Text = "s";
             // 
             // Btt_pulse_clear
             // 
-            this.Btt_pulse_clear.Location = new System.Drawing.Point(115, 230);
+            this.Btt_pulse_clear.Location = new System.Drawing.Point(115, 189);
             this.Btt_pulse_clear.Name = "Btt_pulse_clear";
             this.Btt_pulse_clear.Size = new System.Drawing.Size(76, 23);
             this.Btt_pulse_clear.TabIndex = 1;
@@ -821,7 +941,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(184, 81);
+            this.label28.Location = new System.Drawing.Point(186, 27);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(14, 13);
             this.label28.TabIndex = 6;
@@ -829,7 +949,7 @@
             // 
             // Btt_pulse_load
             // 
-            this.Btt_pulse_load.Location = new System.Drawing.Point(115, 259);
+            this.Btt_pulse_load.Location = new System.Drawing.Point(115, 218);
             this.Btt_pulse_load.Name = "Btt_pulse_load";
             this.Btt_pulse_load.Size = new System.Drawing.Size(76, 23);
             this.Btt_pulse_load.TabIndex = 1;
@@ -839,7 +959,7 @@
             // 
             // Btt_pulse_save
             // 
-            this.Btt_pulse_save.Location = new System.Drawing.Point(33, 259);
+            this.Btt_pulse_save.Location = new System.Drawing.Point(33, 218);
             this.Btt_pulse_save.Name = "Btt_pulse_save";
             this.Btt_pulse_save.Size = new System.Drawing.Size(76, 23);
             this.Btt_pulse_save.TabIndex = 1;
@@ -849,7 +969,7 @@
             // 
             // Btt_pulse_duplicate
             // 
-            this.Btt_pulse_duplicate.Location = new System.Drawing.Point(33, 230);
+            this.Btt_pulse_duplicate.Location = new System.Drawing.Point(33, 189);
             this.Btt_pulse_duplicate.Name = "Btt_pulse_duplicate";
             this.Btt_pulse_duplicate.Size = new System.Drawing.Size(76, 23);
             this.Btt_pulse_duplicate.TabIndex = 1;
@@ -859,7 +979,7 @@
             // 
             // Btt_pulse_down
             // 
-            this.Btt_pulse_down.Location = new System.Drawing.Point(150, 190);
+            this.Btt_pulse_down.Location = new System.Drawing.Point(150, 149);
             this.Btt_pulse_down.Name = "Btt_pulse_down";
             this.Btt_pulse_down.Size = new System.Drawing.Size(30, 30);
             this.Btt_pulse_down.TabIndex = 0;
@@ -869,7 +989,7 @@
             // 
             // Btt_pulse_up
             // 
-            this.Btt_pulse_up.Location = new System.Drawing.Point(114, 190);
+            this.Btt_pulse_up.Location = new System.Drawing.Point(114, 149);
             this.Btt_pulse_up.Name = "Btt_pulse_up";
             this.Btt_pulse_up.Size = new System.Drawing.Size(30, 30);
             this.Btt_pulse_up.TabIndex = 0;
@@ -879,7 +999,7 @@
             // 
             // Btt_pulse_remove
             // 
-            this.Btt_pulse_remove.Location = new System.Drawing.Point(78, 190);
+            this.Btt_pulse_remove.Location = new System.Drawing.Point(78, 149);
             this.Btt_pulse_remove.Name = "Btt_pulse_remove";
             this.Btt_pulse_remove.Size = new System.Drawing.Size(30, 30);
             this.Btt_pulse_remove.TabIndex = 0;
@@ -1895,42 +2015,6 @@
             this.bgWPulse.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BgWPulse_ProgressChanged);
             this.bgWPulse.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgW_RunWorkerCompleted);
             // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Repeats";
-            this.columnHeader4.Width = 100;
-            // 
-            // Nud_pulse_repeats
-            // 
-            this.Nud_pulse_repeats.Location = new System.Drawing.Point(74, 157);
-            this.Nud_pulse_repeats.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.Nud_pulse_repeats.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.Nud_pulse_repeats.Name = "Nud_pulse_repeats";
-            this.Nud_pulse_repeats.Size = new System.Drawing.Size(104, 20);
-            this.Nud_pulse_repeats.TabIndex = 4;
-            this.Nud_pulse_repeats.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(20, 159);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(50, 13);
-            this.label35.TabIndex = 5;
-            this.label35.Text = "Repeats:";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1979,6 +2063,9 @@
             this.sc_list.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sc_list)).EndInit();
             this.sc_list.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nud_totalrepeat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nud_measureTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Nud_pulses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_pulse_delay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_pulse_duration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_pulse_level)).EndInit();
@@ -2022,7 +2109,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Nud_gate_end)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_gate_step)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_gate_start)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Nud_pulse_repeats)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2166,7 +2252,12 @@
         private System.ComponentModel.BackgroundWorker bgWPulse;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.NumericUpDown Nud_pulse_repeats;
+        private System.Windows.Forms.NumericUpDown Nud_pulses;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.NumericUpDown nud_totalrepeat;
+        private System.Windows.Forms.NumericUpDown nud_measureTime;
+        private System.Windows.Forms.Label label34;
     }
 }
 
